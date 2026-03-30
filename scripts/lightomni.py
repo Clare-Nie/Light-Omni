@@ -119,6 +119,15 @@ class LightOmniAgent:
         })
         return response
 
+    def reload(self):
+        if hasattr(self, 'profile_tool'):
+            self.profile_tool.reload()
+        if hasattr(self, 'retriever'):
+            self.retriever.reload()
+        if os.path.exists(self.data_file_path):
+            with open(self.data_file_path, 'r', encoding='utf-8') as f:
+                self.data = json.load(f)
+
 
     def get_unified_history(self):
         all_logs = []
@@ -146,7 +155,7 @@ class LightOmniAgent:
             return "No history available.", raw_imgs
         return "\n".join(all_logs), raw_imgs
 
-    
+
     def get_response_state_parallel(self, message):
         prompt = prompts_inf.OMNI_MEMORY_STAGE_1_PROMPT_INF
         prompt = prompt.replace("{START_TIME}", message["start_time"])
@@ -169,6 +178,7 @@ class LightOmniAgent:
             return "", {}
         if message["tag"] == "inference":
             retrieve_state = self.get_response_state_parallel(message)
+            print("Retrieve state:", retrieve_state, message)
             if not retrieve_state.get("is_response", False):
                 retrieve_state.pop("retrieve_embedding", None)
                 return "", retrieve_state
@@ -440,6 +450,7 @@ class LightOmniAgent:
         response, retrieve_state = self.process_single_message(message)
         self.client.clear_media_files()
         update = True if message["tag"] != "eval_final_question" else False
+        detected_faces = list(self.current_turn_faces) 
         if update:
             self.data[-1]["convs"] = self.data[-1].get("convs", [])
             self.data[-1]["convs"].append({"message": message, "response": response, "retrieve_state": retrieve_state})
@@ -451,7 +462,8 @@ class LightOmniAgent:
         turn_data = {
             "message": message, 
             "response": response, 
-            "retrieve_state": retrieve_state
+            "retrieve_state": retrieve_state,
+            "faces": detected_faces
         }
         return response, turn_data
 

@@ -44,6 +44,27 @@ class ProfileTool:
         self.app.prepare(ctx_id=0, det_size=(640, 640))
         self.active_tracks = {}
 
+    def reload(self):
+        if os.path.exists(self.json_path):
+            try:
+                with open(self.json_path, 'r', encoding='utf-8') as f:
+                    new_meta = json.load(f)
+                    if "qualities" not in new_meta:
+                        new_meta["qualities"] = [1.0] * len(new_meta.get("mapping", []))
+                    self.meta = new_meta
+            except Exception as e:
+                print(f"[ProfileTool] Reload Meta Error: {e}")
+
+        if os.path.exists(self.vectors_path):
+            try:
+                embeddings_np = np.load(self.vectors_path)
+                self.known_embeddings = embeddings_np.tolist()
+                self.index.reset()
+                if len(self.known_embeddings) > 0:
+                    self.index.add(embeddings_np.astype('float32'))
+            except Exception as e:
+                print(f"[ProfileTool] Reload Vectors Error: {e}")
+
     def get_faces_profile(self, faces):
         if os.path.exists(self.json_path):
             with open(self.json_path, 'r') as f:

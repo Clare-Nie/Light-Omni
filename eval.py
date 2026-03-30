@@ -434,8 +434,11 @@ if __name__ == "__main__":
         mp.spawn(main_worker, args=(WORLD_SIZE, eval_dataset), nprocs=WORLD_SIZE)    
         merge_results(eval_dataset)
         eval_final_result(eval_dataset)
+    for eval_dataset in eval_datasets:
+        eval_final_result(eval_dataset)
 
-
+# conda activate controlnet2
+# cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni
 # CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python eval.py
 
 

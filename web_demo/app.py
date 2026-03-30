@@ -75,8 +75,7 @@ def process_2_inference(q1, q2, q3, q_sync, save_dir_base):
             sync_msg = q_sync.get()
             if sync_msg == "MEMORY_UPDATED":
                 if agent:
-                    agent.data = json.load(open(agent.data_file_path, 'r', encoding='utf-8'))
-                    agent.retriever.reload()
+                    agent.reload()
                     print("[进程2-GPU0] 已同步最新记忆！")
 
         # 2. 从 Q1 获取多模态流或等待连接
@@ -113,8 +112,7 @@ def process_2_inference(q1, q2, q3, q_sync, save_dir_base):
                     print(f"[进程2-GPU0] 警告: 当前帧时间戳 {ts} 早于上一次对话的结束时间 {latest_conv_time}。跳过此帧。")
                     continue
 
-            v_path_processed = agent.process_image(ts, v_path) # 假设这个方法返回处理后的路径
-            
+            v_path_processed = agent.process_image(ts, v_path)
             try:
                 audio_chunk, _ = librosa.load(a_path, sr=16000, mono=True)
             except Exception as e:
@@ -190,7 +188,6 @@ def process_2_inference(q1, q2, q3, q_sync, save_dir_base):
                     total_latency = time.time() - end_dt.timestamp()
                     pure_inference_time = time.time() - inference_start_wall
                     print(f"[进程2-GPU0] {time.strftime('%Y-%m-%d %H:%M:%S')}", f"对话结束于: {end_time_segment}", f"  - 响应总延迟 (距第一帧): {total_latency:.2f}s", f"  - 纯模型推理耗时: {pure_inference_time:.2f}s")
-                    print(turn_data['retrieve_state'])
 
                     if response_text:
                         q3.put({"type": "text_response", "text": response_text})
@@ -282,6 +279,8 @@ def process_3_memory(q2, q3, q_sync, save_dir_base):
                 continue
 
             turn_data = item
+            if 'faces' in turn_data:
+                memory_agent.current_turn_faces = set(turn_data['faces'])
             q3.put({"type": "system_event", "event": "memory_start"})
             print("[进程3-GPU1] 收到新对话，开始长短时记忆整合...")
             
@@ -300,6 +299,7 @@ def process_3_memory(q2, q3, q_sync, save_dir_base):
             memory_agent.data[-1]["convs"].append(turn_data)
             memory_agent.memory_consolidation()
             memory_agent.update()
+            memory_agent.current_turn_faces = set()
 
             q3.put({"type": "system_event", "event": "memory_done"})
             q_sync.put("MEMORY_UPDATED")
