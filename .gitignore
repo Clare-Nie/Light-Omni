@@ -1,1 +1,5 @@
 .vscode/
+output/
+.idea/
+.gitignore
+.DS_Store

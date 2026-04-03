@@ -15,7 +15,7 @@ from google.genai import types
 
 class QwenOmni2_5Model():
     def __init__(self,
-                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
+                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260402-230319/checkpoint-6996",
                 base_model="Qwen/Qwen2.5-Omni-7B",
                 device_map=None):
         if device_map is None:

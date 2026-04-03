@@ -417,7 +417,6 @@ if __name__ == '__main__':
     Q3_output = mp.Queue()
     Q_Sync = mp.Queue()
 
-
     p2 = mp.Process(target=process_2_inference, args=(Q1_input, Q2_memory, Q3_output, Q_Sync, BASE_SAVE_DIR))
     p2.start()
     p3 = mp.Process(target=process_3_memory, args=(Q2_memory, Q3_output, Q_Sync, BASE_SAVE_DIR))
