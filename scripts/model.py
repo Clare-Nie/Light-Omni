@@ -15,8 +15,8 @@ from google.genai import types
 
 class QwenOmni2_5Model():
     def __init__(self,
-                # model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
-                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260403-225504/checkpoint-4832",
+                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
+                # model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260403-225504/checkpoint-4832",
                 base_model="Qwen/Qwen2.5-Omni-7B",
                 device_map=None):
         if device_map is None:
@@ -270,7 +270,7 @@ class GeminiClient:
         return new_prompt, new_files
 
     def prepare_input(self, prompt, files=[], optimize=True):
-        if optimize and len(files) > 16:
+        if optimize and len(files) > 12:
             prompt, files = self._optimize_continuous_images(prompt, files)
 
         assert len(files) == prompt.count("<img>") + prompt.count("<audio>") + prompt.count("<video>")
