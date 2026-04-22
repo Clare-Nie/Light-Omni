@@ -15,8 +15,8 @@ from google.genai import types
 
 class QwenOmni2_5Model():
     def __init__(self,
-                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
-                # model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260403-225504/checkpoint-4832",
+                # model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
+                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260403-225504/checkpoint-4832",
                 base_model="Qwen/Qwen2.5-Omni-7B",
                 device_map=None):
         if device_map is None:
@@ -170,9 +170,9 @@ class QwenOmni2_5Model():
 
 class GeminiClient:
     def __init__(self,
-                api_key="sk-fTzScj6hsRzfOReTtnGgH3fFC1G9aYaKwATiEsAyukZIYTAe",
+                api_key="sk-lhD6vSrHf4NYEFuYNSlcCHh3h0zIQnZqqt8YvWNTxABKeWDX",
                 base_url="http://automl.aiserverai.online",
-                model_name="gemini-3.1-flash-lite-preview"  # gemini-3-flash-preview gemini-3.1-flash-lite-preview
+                model_name="gemini-3.1-flash-lite-preview"  # gemini-3-flash-preview gemini-3.1-flash-lite-preview  gemini-3.1-pro-preview
                 ):
         self.client = genai.Client(
             http_options=types.HttpOptions(
@@ -253,7 +253,7 @@ class GeminiClient:
             
             curr_block = media_info[idx : j+1]
             if curr_block[0]['tag'] == '<img>' and len(curr_block) >= 9:
-                sampled_block = curr_block[::2]
+                sampled_block = curr_block[::3]
                 kept_seg_idxs = {m['seg_idx'] for m in sampled_block}
 
                 to_keep_file_indices.extend([m['file_idx'] for m in sampled_block])
@@ -270,8 +270,11 @@ class GeminiClient:
         return new_prompt, new_files
 
     def prepare_input(self, prompt, files=[], optimize=True):
+        print(f"原始图片数量: {prompt.count('<img>')}, 音频数量: {prompt.count('<audio>')}, 视频数量: {prompt.count('<video>')}")
+        print(prompt)
         if optimize and len(files) > 12:
             prompt, files = self._optimize_continuous_images(prompt, files)
+            print(f"已优化连续图片数量，当前图片数量: {len(files)}")
 
         assert len(files) == prompt.count("<img>") + prompt.count("<audio>") + prompt.count("<video>")
         inputs = []
@@ -331,7 +334,7 @@ class GemmaClient:
         return response.json().strip("<turn|>")
 
 # if __name__ == "__main__":
-#     client = GemmaClient()
+#     client = GeminiClient()
 #     my_prompt = "<audio>描述这段音频的内容一句话分析。"
 #     my_files = [
 #         # "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/dataset/training_retrieve/0/profiles/data/processed_2025-01-10 17:07:01.png", 

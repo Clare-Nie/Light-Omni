@@ -4,6 +4,7 @@ import copy
 import re
 import random
 import time
+from datetime import datetime
 
 import torch
 from collections import Counter
@@ -91,6 +92,30 @@ class LightOmniAgent:
         else:
             self.data.append({"convs": []})
         return res
+
+    def _should_force_response_every_3min(self, current_start_time):
+        if not current_start_time:
+            return False
+
+        last_response_time = None
+        if self.data:
+            for conv in reversed(self.data[-1].get("convs", [])):
+                resp = conv.get("response", "")
+                if isinstance(resp, str) and resp.strip():
+                    last_response_time = conv.get("message", {}).get("end_time")
+                    break
+
+        if not last_response_time:
+            return True
+
+        time_format = "%Y-%m-%d %H:%M:%S"
+        try:
+            t_cur = datetime.strptime(current_start_time, time_format)
+            t_last = datetime.strptime(last_response_time, time_format)
+        except Exception:
+            return False
+
+        return (t_cur - t_last).total_seconds() >= 180
 
 
     def get_model_response(self, prompt, files, json_output=False, clear_context=True, log_tag="unknown"):
@@ -180,6 +205,14 @@ class LightOmniAgent:
             return "", {}
         if message["tag"] == "inference":
             retrieve_state = self.get_response_state_parallel(message)
+
+            ##### For Gemini Testing
+            if self.use_gemini:
+                # retrieve_state["is_retrieve"] = True
+                if self._should_force_response_every_3min(message.get("start_time")):
+                    print("Forcing response due to long time since last response: ", message.get("start_time"))
+                    retrieve_state["is_response"] = True
+            ######
             print(retrieve_state)
             # retrieve_state["is_response"] = True
             if not retrieve_state.get("is_response", False):
@@ -296,6 +329,9 @@ class LightOmniAgent:
         response["end_time"] = message["end_time"]
         response['assistant'] = assistant_response
         response["level"] = 0
+
+        if len(self.data[-1].get("logs", [])) > 0 and self.data[-1]["logs"][-1].get("auditory", "") == response.get("auditory", ""):
+            response["auditory"] = "Silent"
 
         self.data[-1]["logs"] = self.data[-1].get("logs", [])
         response["turn_idx"] = len(self.data[-1]["logs"])
@@ -451,9 +487,11 @@ class LightOmniAgent:
                 self.update_long_term_memory()
             self.data.append({"convs": []})
         response, retrieve_state = self.process_single_message(message)
+        if response.lower() in ["null", "none", "silent"]:
+            response = ""
         self.client.clear_media_files()
         update = True if message["tag"] != "eval_final_question" else False
-        detected_faces = list(self.current_turn_faces) 
+        detected_faces = list(self.current_turn_faces)
         if update:
             self.data[-1]["convs"] = self.data[-1].get("convs", [])
             self.data[-1]["convs"].append({"message": message, "response": response, "retrieve_state": retrieve_state})

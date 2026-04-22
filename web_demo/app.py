@@ -315,6 +315,7 @@ def process_3_memory(q2, q3, q_sync, save_dir_base):
 def index():
     return render_template('index.html')
 
+
 @socketio.on('connect_agent')
 def handle_connect_agent(data):
     global CURRENT_SAVE_DIR
@@ -423,15 +424,17 @@ if __name__ == '__main__':
     p3.start()
     
     socketio.start_background_task(target=output_listener)
-    socketio.run(app, host='127.0.0.1', port=8085, allow_unsafe_werkzeug=True)
-                #  ssl_context=('./cert.pem', './key.pem')) # http --> https
+    socketio.run(app, host='127.0.0.1', port=8088, allow_unsafe_werkzeug=True, #)
+                 ssl_context=('./web_demo/cert.pem', './web_demo/key.pem')) # http --> https
 
 # cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni; conda activate controlnet2
+
 # CUDA_VISIBLE_DEVICES=6,7 python -m web_demo.app
 # openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
 # Common Name (e.g. server FQDN or YOUR name) []:192.168.31.234 # ipconfig getifaddr en0
-# https://10.49.5.24:19090/
+# https://10.49.5.24:8086/
 # git add . && git commit -m "update" && git push
+
 
 
 
