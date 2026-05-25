@@ -3,3 +3,4 @@ output/
 .idea/
 .gitignore
 .DS_Store
+*.pdf
