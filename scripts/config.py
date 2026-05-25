@@ -22,8 +22,6 @@ class FaceConfig:
     PROFILE_INDEX_FILE = "faces.index"
     PROFILE_VECTORS_FILE = "vectors.npy"
 
-DATA_QUESTION_NUM = 5
-USE_DOUBAO = False
 
 
 

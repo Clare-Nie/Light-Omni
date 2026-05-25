@@ -134,14 +134,6 @@ class ProfileTool:
         valid_faces = []
         for f in faces:
             if f.det_score < 0.7: continue 
-            bbox = f.bbox.astype(int)
-            if (bbox[3] - bbox[1]) < 75: continue 
-            valid_faces.append(f)
-        return valid_faces
-    def get_confident_face(self, faces):
-        valid_faces = []
-        for f in faces:
-            if f.det_score < 0.7: continue 
             
             bbox = f.bbox.astype(int)
             face_width = bbox[2] - bbox[0]
