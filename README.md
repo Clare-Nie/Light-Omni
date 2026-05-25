@@ -21,10 +21,10 @@ Light-Omni is an agentic video understanding system with long-term multimodal me
 ## Contents
 
 - [Introduction](#introduction)
+- [Performance](#performance)
 - [Environment and Training](#environment-and-training)
 - [Evaluation and Test Results](#evaluation-and-test-results)
 - [Demo](#demo)
-- [Performance](#performance)
 - [Citation](#citation)
 
 ## Introduction
@@ -64,6 +64,21 @@ Main resources:
 - Model: https://huggingface.co/ClareNie/Light-Omni
 - Training data: https://huggingface.co/datasets/ClareNie/Light-Omni-Training
 - Paper: https://arxiv.org/abs/xxxx.xxxx
+
+## Performance
+
+Light-Omni is designed for long-video agent scenarios where direct full-context reasoning is expensive. The system uses:
+
+- latent response/retrieval states to avoid unnecessary generation;
+- retrieval embeddings to query semantic and episodic memories;
+- visual token compression in the patched Qwen2.5-Omni template;
+- feature caching during streaming interaction.
+
+<p align="center">
+  <img src="docs/assets/performance.png" width="860" alt="Light-Omni performance">
+</p>
+
+For reproducibility, raw scored evaluation outputs are kept in `logs/`.
 
 ## Environment and Training
 
@@ -196,21 +211,6 @@ The demo uses:
 - `output/` for local session storage
 
 Adjust `scripts/config.py`, `scripts/model.py`, and `web_demo/app.py` if your checkpoint path, GPU layout, or output directory differs.
-
-## Performance
-
-Light-Omni is designed for long-video agent scenarios where direct full-context reasoning is expensive. The system uses:
-
-- latent response/retrieval states to avoid unnecessary generation;
-- retrieval embeddings to query semantic and episodic memories;
-- visual token compression in the patched Qwen2.5-Omni template;
-- feature caching during streaming interaction.
-
-<p align="center">
-  <img src="docs/assets/performance.png" width="860" alt="Light-Omni performance">
-</p>
-
-For reproducibility, raw scored evaluation outputs are kept in `logs/`.
 
 
 ## Citation
