@@ -1,10 +1,11 @@
+-e ./thirdparty/transformers
+-e ./thirdparty/ms-swift
 faiss-gpu==1.7.2
 soundfile==0.13.1
 pillow==10.4.0
 numpy==1.26.4
 torch==2.8.0
 torchaudio==2.8.0
-soundfile==0.13.1
 silero-vad==6.2.0
 faster-whisper==1.2.1
 insightface==0.7.3
