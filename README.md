@@ -85,7 +85,7 @@ For reproducibility, raw scored evaluation outputs are kept in `logs/`.
 Create a fresh conda environment for Light-Omni:
 
 ```bash
-conda create -n lightomni python=3.11 -y
+conda create -n lightomni python=3.10 -y
 conda activate lightomni
 git clone https://github.com/Clare-Nie/Light-Omni.git
 cd Light-Omni
