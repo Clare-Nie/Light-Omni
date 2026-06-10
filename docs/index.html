@@ -18,6 +18,7 @@
   <body>
     <nav class="nav">
       <a href="#home" class="active">Home</a>
+      <a href="#demo">Demo</a>
       <a href="#intro">Introduction</a>
       <a href="#framework">Framework</a>
       <a href="#results">Results</a>
@@ -65,7 +66,30 @@
         </div>
       </section>
 
-      <section class="section" id="intro">
+      <section class="section" id="demo">
+        <div class="container">
+          <h2>Demo</h2>
+          <div class="text-block">
+            <p>
+              The interactive web demo shows Light-Omni using long-term multimodal
+              memory to respond to streaming video, audio, and text context.
+            </p>
+          </div>
+
+          <figure class="video-card">
+            <video controls preload="metadata" poster="./assets/demo.png">
+              <source src="./assets/demo-light.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <figcaption>
+              Light-Omni web demo with reflexive response control and memory retrieval.
+              This demo is built on Qwen3-Omni-30B-A3B-Instruct.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section tinted" id="intro">
         <div class="container">
           <h2>Introduction</h2>
           <div class="text-block">
@@ -94,7 +118,7 @@
         </div>
       </section>
 
-      <section class="section tinted" id="framework">
+      <section class="section" id="framework">
         <div class="container">
           <h2>The Light-Omni Framework</h2>
           <div class="text-block">
@@ -123,7 +147,7 @@
         </div>
       </section>
 
-      <section class="section" id="results">
+      <section class="section tinted" id="results">
         <div class="container">
           <h2>Results</h2>
           <div class="stats">
@@ -151,7 +175,7 @@
         </div>
       </section>
 
-      <section class="section tinted" id="citation">
+      <section class="section" id="citation">
         <div class="container">
           <h2>Citation</h2>
           <p class="citation-intro">

@@ -192,9 +192,18 @@ Current test results:
 
 ## Demo
 
+Watch the web demo video:
+
 <p align="center">
-  <img src="docs/assets/demo.png" width="860" alt="Light-Omni web demo">
+  <video src="docs/assets/demo-light.mp4" controls poster="docs/assets/demo.png" width="860">
+    Your browser does not support the video tag.
+  </video>
+  <br>
+  <sub>This demo is built on Qwen3-Omni-30B-A3B-Instruct.</sub>
 </p>
+
+If the video does not render in your Markdown viewer, open
+[`docs/assets/demo-light.mp4`](docs/assets/demo-light.mp4) directly.
 
 Start the interactive web demo:
 

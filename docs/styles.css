@@ -241,6 +241,31 @@ h2::before {
   text-align: center;
 }
 
+.video-card {
+  margin: 34px 0 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.video-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f172a;
+}
+
+.video-card figcaption {
+  padding: 18px 22px;
+  background: #fafafa;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 15px;
+  text-align: center;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
