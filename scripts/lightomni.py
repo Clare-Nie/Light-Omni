@@ -28,17 +28,12 @@ class LightOmniAgent:
                  client=None,
                  cache=True,
                  merge_factor=8,
-                 use_gemini=True
                  ):
         self.root_path = root_path
         if client is None:
             self.client = model.QwenOmni2_5Model()
         else:
             self.client = client
-        self.use_gemini = use_gemini
-        if self.use_gemini:
-            self.gemini = model.GeminiClient()
-            # self.gemini = model.GemmaClient()
         if cache:
             self.client.start_feature_cache()
         self.merge_factor = merge_factor
@@ -123,11 +118,7 @@ class LightOmniAgent:
         _files = copy.deepcopy(files)
         if files:
             assert len(files) == prompt.count("<img>") + prompt.count("<audio>")
-        if log_tag=="response_generation" and self.use_gemini:
-            print("Using Gemini for response generation")
-            response = self.gemini.send_message(self.gemini.prepare_input(copy.deepcopy(_prompt), copy.deepcopy(_files)), clear=True)
-        else:
-            response = self.client.send_message(self.client.prepare_input(copy.deepcopy(_prompt), copy.deepcopy(_files)), mode="response" if log_tag=="response_generation" else "memory")
+        response = self.client.send_message(self.client.prepare_input(copy.deepcopy(_prompt), copy.deepcopy(_files)), mode="response" if log_tag=="response_generation" else "memory")
         if json_output:
             try:
                 response = utils.format_normalize(response)
@@ -205,16 +196,7 @@ class LightOmniAgent:
             return "", {}
         if message["tag"] == "inference":
             retrieve_state = self.get_response_state_parallel(message)
-
-            ##### For Gemini Testing
-            if self.use_gemini:
-                # retrieve_state["is_retrieve"] = True
-                if self._should_force_response_every_3min(message.get("start_time")):
-                    print("Forcing response due to long time since last response: ", message.get("start_time"))
-                    retrieve_state["is_response"] = True
-            ######
-            print(retrieve_state)
-            # retrieve_state["is_response"] = True
+            # print(retrieve_state)
             if not retrieve_state.get("is_response", False):
                 retrieve_state.pop("retrieve_embedding", None)
                 return "", retrieve_state
@@ -230,10 +212,7 @@ class LightOmniAgent:
                 semantic_memory_str, episodic_memory_str, ret_files = self.retrieve_memory(retrieve_state.get("retrieve_embedding", message["text"]))
             else:
                 semantic_memory_str, episodic_memory_str, ret_files = "", "", []
-        if self.use_gemini:
-            prompt = prompts_inf.OMNI_MEMORY_STAGE_2_PROMPT_INF_gemini
-        else:
-            prompt = prompts_inf.OMNI_MEMORY_STAGE_2_PROMPT_INF
+        prompt = prompts_inf.OMNI_MEMORY_STAGE_2_PROMPT_INF
         prompt = prompt.replace("{START_TIME}", message["start_time"])
         prompt = prompt.replace("{END_TIME}", message["end_time"])
         prompt = prompt.replace("{INPUT_IMAGE_SEQUENCE}", "<img>" * len(message["image_path"]))
