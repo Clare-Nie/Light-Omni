@@ -3,152 +3,170 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Light-Omni</title>
     <meta
       name="description"
-      content="Light-Omni is a lightweight omnichannel memory and training dataset construction project."
+      content="Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory."
     />
+    <meta
+      name="keywords"
+      content="Light-Omni, video understanding, multimodal agent, long-term memory, MLLM"
+    />
+    <title>Light-Omni: Reflex over Reasoning in Agentic Video Understanding</title>
+    <link rel="icon" href="./assets/icon.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#">Light-Omni</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#overview">Overview</a>
-        <a href="#pipeline">Pipeline</a>
-        <a href="#features">Features</a>
-        <a href="#release">Release</a>
-      </nav>
-    </header>
+    <nav class="nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#intro">Introduction</a>
+      <a href="#framework">Framework</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </nav>
 
-    <main>
+    <main id="home">
       <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Omnimemory training dataset construction</p>
-          <h1>Lightweight data construction for omni-memory research.</h1>
-          <p class="lead">
-            Light-Omni provides a practical project space for building,
-            organizing, and presenting training datasets used in omni-memory
-            workflows. The project page will host the public-facing overview,
-            release notes, and links to code, data cards, and documentation.
+        <div class="container narrow">
+          <h1>
+            <img src="./assets/icon.png" alt="" />
+            Light-Omni
+          </h1>
+          <p class="subtitle">
+            Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory
           </p>
-          <div class="actions">
-            <a class="button primary" href="#release">View release plan</a>
-            <a class="button secondary" href="https://github.com/" rel="noreferrer">GitHub</a>
+
+          <div class="authors">
+            <span>Chang Nie<sup>1</sup></span>
+            <span>Jiaju Wei<sup>1</sup></span>
+            <span>Junlan Feng<sup>2*</sup></span>
+            <span>Caifeng Shan<sup>1*</sup></span>
+            <span>Chaoyou Fu<sup>1</sup></span>
           </div>
-        </div>
-        <div class="hero-panel" aria-label="Dataset construction workflow summary">
-          <div class="metric">
-            <span class="metric-value">01</span>
-            <span class="metric-label">Collect multimodal memory sources</span>
+          <div class="affiliations">
+            <span><sup>1</sup>Nanjing University, Suzhou, China</span>
+            <span><sup>2</sup>China Mobile Research, Beijing, China</span>
           </div>
-          <div class="metric">
-            <span class="metric-value">02</span>
-            <span class="metric-label">Normalize samples and metadata</span>
-          </div>
-          <div class="metric">
-            <span class="metric-value">03</span>
-            <span class="metric-label">Curate instruction-ready training data</span>
+          <p class="note">* Corresponding authors</p>
+
+          <div class="button-row">
+            <a class="button primary" href="https://github.com/Clare-Nie/Light-Omni">
+              <span>GitHub</span>
+            </a>
+            <a class="button" href="./assets/lightomni.pdf">
+              <span>Paper</span>
+            </a>
+            <a class="button" href="#citation">
+              <span>BibTeX</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <section id="overview" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Overview</p>
-          <h2>Project Purpose</h2>
-        </div>
-        <div class="content-grid">
-          <p>
-            Light-Omni is designed as a compact, public-facing companion for a
-            training dataset construction workflow. It focuses on clarity:
-            what the dataset is for, how examples are produced, what metadata
-            is preserved, and how future users can reproduce or extend the
-            pipeline.
-          </p>
-          <p>
-            This homepage is intentionally static and GitHub Pages friendly.
-            It can be served directly from the repository's <code>docs/</code>
-            directory without adding a frontend build system.
-          </p>
-        </div>
-      </section>
-
-      <section id="pipeline" class="section accent">
-        <div class="section-heading">
-          <p class="eyebrow">Pipeline</p>
-          <h2>Dataset Construction Flow</h2>
-        </div>
-        <div class="steps">
-          <article>
-            <span>1</span>
-            <h3>Source Alignment</h3>
+      <section class="section" id="intro">
+        <div class="container">
+          <h2>Introduction</h2>
+          <div class="text-block">
             <p>
-              Gather project-specific memory sources, raw annotations, and
-              auxiliary metadata into a consistent workspace.
+              Agentic video understanding equips multimodal models with long-term
+              memory to process continuous, long-horizon streams. Existing video
+              agents often rely on detective-style iterative reasoning for search
+              control and evidence aggregation, which introduces high latency and
+              computational cost.
             </p>
-          </article>
-          <article>
-            <span>2</span>
-            <h3>Quality Filtering</h3>
             <p>
-              Remove unusable samples, check formatting, and keep traceable
-              fields for downstream inspection.
+              Light-Omni reframes this process as reflexive video understanding.
+              Instead of repeatedly planning and searching, it maintains dual
+              contextual states that provide global context and generate
+              semantically aligned retrieval embeddings in a single forward pass.
             </p>
-          </article>
-          <article>
-            <span>3</span>
-            <h3>Instruction Packaging</h3>
-            <p>
-              Convert curated records into training-ready examples with clear
-              prompts, responses, and dataset cards.
-            </p>
-          </article>
+          </div>
+
+          <figure class="image-card">
+            <img src="./assets/comp.png" alt="Comparison between iterative video agents and Light-Omni" />
+            <figcaption>
+              Light-Omni replaces costly iterative reasoning with global context
+              and semantically aligned retrieval for low-latency video understanding.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="features" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Features</p>
-          <h2>What This Page Will Track</h2>
-        </div>
-        <div class="feature-list">
-          <article>
-            <h3>Project Description</h3>
-            <p>A concise description of Light-Omni, its scope, and intended research use.</p>
-          </article>
-          <article>
-            <h3>Dataset Documentation</h3>
-            <p>Links to data cards, sample formats, schema notes, and preprocessing details.</p>
-          </article>
-          <article>
-            <h3>Release Status</h3>
-            <p>Public checkpoints for code, scripts, example records, and dataset releases.</p>
-          </article>
-          <article>
-            <h3>Citation and Contact</h3>
-            <p>Space for citation metadata, paper links, maintainers, and issue reporting.</p>
-          </article>
+      <section class="section tinted" id="framework">
+        <div class="container">
+          <h2>The Light-Omni Framework</h2>
+          <div class="text-block">
+            <p>
+              Light-Omni builds a multimodal long-term memory system with identity
+              profiles, semantic memory, and episodic memory. Sleep-time memory
+              consolidation constructs a compact global state from episodic memory,
+              preserving recent details while summarizing long-range observations.
+            </p>
+            <p>
+              Conditioned on this global state, Light-Omni derives a latent state
+              that directly controls autonomous actions and produces retrieval
+              embeddings. This coupled design narrows the semantic gap between user
+              queries and memory distributions without explicit query rewriting or
+              multi-step reasoning.
+            </p>
+          </div>
+
+          <figure class="image-card">
+            <img src="./assets/framework.png" alt="Light-Omni framework" />
+            <figcaption>
+              Dual contextual states enable global video context, reflexive action
+              control, and aligned evidence retrieval.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="release" class="section release">
-        <div>
-          <p class="eyebrow">Release</p>
-          <h2>Public Access Plan</h2>
-          <p>
-            After this repository is pushed to GitHub, enable GitHub Pages from
-            <code>Settings -> Pages -> Deploy from a branch -> main / docs</code>.
-            The public URL will usually be:
+      <section class="section" id="results">
+        <div class="container">
+          <h2>Results</h2>
+          <div class="stats">
+            <article>
+              <strong>+2.4%</strong>
+              <span>average accuracy over M3-Agent</span>
+            </article>
+            <article>
+              <strong>12.1x</strong>
+              <span>speedup over M3-Agent</span>
+            </article>
+            <article>
+              <strong>2.6x</strong>
+              <span>GPU memory efficiency improvement</span>
+            </article>
+          </div>
+
+          <figure class="image-card">
+            <img src="./assets/performance.png" alt="Light-Omni performance results" />
+            <figcaption>
+              Light-Omni achieves strong long-video performance while maintaining
+              near-constant latency as video duration increases.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section tinted" id="citation">
+        <div class="container">
+          <h2>Citation</h2>
+          <p class="citation-intro">
+            Please cite Light-Omni if this project is useful for your research.
           </p>
-          <pre><code>https://YOUR_GITHUB_USERNAME.github.io/Light-Omni/</code></pre>
+          <pre><code>@article{nie2026lightomni,
+  title={Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory},
+  author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Shan, Caifeng and Fu, Chaoyou},
+  journal={Journal of LaTeX Class Files},
+  year={2026}
+}</code></pre>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
       <span>Light-Omni</span>
-      <span>Project homepage for GitHub Pages</span>
+      <span>Project page for agentic video understanding with long-term memory.</span>
     </footer>
   </body>
 </html>
