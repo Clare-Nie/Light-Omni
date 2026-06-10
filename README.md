@@ -1,8 +1,7 @@
-# Light-Omni
-
-<p align="center">
-  <img src="docs/assets/icon.png" width="140" alt="Light-Omni icon">
-</p>
+<h1 align="center">
+  <img src="docs/assets/icon.png" width="64" alt="Light-Omni icon">
+  Light-Omni
+</h1>
 
 **Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory**
 
@@ -68,11 +67,13 @@ Main resources:
 
 ## Environment and Training
 
-The current tested environment is `controlnet2`.
+Create a fresh conda environment for Light-Omni:
 
 ```bash
-conda activate controlnet2
-cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni0525_github/Light-Omni_push_work
+conda create -n lightomni python=3.11 -y
+conda activate lightomni
+git clone https://github.com/Clare-Nie/Light-Omni.git
+cd Light-Omni
 pip install -r requirements.txt
 ```
 
@@ -145,8 +146,8 @@ https://huggingface.co/ClareNie/Light-Omni
 Run evaluation with:
 
 ```bash
-conda activate controlnet2
-cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni0525_github/Light-Omni_push_work
+conda activate lightomni
+cd Light-Omni
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python eval.py
 ```
 
@@ -183,8 +184,8 @@ Current test results:
 Start the interactive web demo:
 
 ```bash
-conda activate controlnet2
-cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni0525_github/Light-Omni_push_work
+conda activate lightomni
+cd Light-Omni
 python -m web_demo.app
 ```
 
