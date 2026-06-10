@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Light-Omni</title>
+    <meta
+      name="description"
+      content="Light-Omni is a lightweight omnichannel memory and training dataset construction project."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#">Light-Omni</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#features">Features</a>
+        <a href="#release">Release</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Omnimemory training dataset construction</p>
+          <h1>Lightweight data construction for omni-memory research.</h1>
+          <p class="lead">
+            Light-Omni provides a practical project space for building,
+            organizing, and presenting training datasets used in omni-memory
+            workflows. The project page will host the public-facing overview,
+            release notes, and links to code, data cards, and documentation.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#release">View release plan</a>
+            <a class="button secondary" href="https://github.com/" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Dataset construction workflow summary">
+          <div class="metric">
+            <span class="metric-value">01</span>
+            <span class="metric-label">Collect multimodal memory sources</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">02</span>
+            <span class="metric-label">Normalize samples and metadata</span>
+          </div>
+          <div class="metric">
+            <span class="metric-value">03</span>
+            <span class="metric-label">Curate instruction-ready training data</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2>Project Purpose</h2>
+        </div>
+        <div class="content-grid">
+          <p>
+            Light-Omni is designed as a compact, public-facing companion for a
+            training dataset construction workflow. It focuses on clarity:
+            what the dataset is for, how examples are produced, what metadata
+            is preserved, and how future users can reproduce or extend the
+            pipeline.
+          </p>
+          <p>
+            This homepage is intentionally static and GitHub Pages friendly.
+            It can be served directly from the repository's <code>docs/</code>
+            directory without adding a frontend build system.
+          </p>
+        </div>
+      </section>
+
+      <section id="pipeline" class="section accent">
+        <div class="section-heading">
+          <p class="eyebrow">Pipeline</p>
+          <h2>Dataset Construction Flow</h2>
+        </div>
+        <div class="steps">
+          <article>
+            <span>1</span>
+            <h3>Source Alignment</h3>
+            <p>
+              Gather project-specific memory sources, raw annotations, and
+              auxiliary metadata into a consistent workspace.
+            </p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Quality Filtering</h3>
+            <p>
+              Remove unusable samples, check formatting, and keep traceable
+              fields for downstream inspection.
+            </p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Instruction Packaging</h3>
+            <p>
+              Convert curated records into training-ready examples with clear
+              prompts, responses, and dataset cards.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Features</p>
+          <h2>What This Page Will Track</h2>
+        </div>
+        <div class="feature-list">
+          <article>
+            <h3>Project Description</h3>
+            <p>A concise description of Light-Omni, its scope, and intended research use.</p>
+          </article>
+          <article>
+            <h3>Dataset Documentation</h3>
+            <p>Links to data cards, sample formats, schema notes, and preprocessing details.</p>
+          </article>
+          <article>
+            <h3>Release Status</h3>
+            <p>Public checkpoints for code, scripts, example records, and dataset releases.</p>
+          </article>
+          <article>
+            <h3>Citation and Contact</h3>
+            <p>Space for citation metadata, paper links, maintainers, and issue reporting.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="release" class="section release">
+        <div>
+          <p class="eyebrow">Release</p>
+          <h2>Public Access Plan</h2>
+          <p>
+            After this repository is pushed to GitHub, enable GitHub Pages from
+            <code>Settings -> Pages -> Deploy from a branch -> main / docs</code>.
+            The public URL will usually be:
+          </p>
+          <pre><code>https://YOUR_GITHUB_USERNAME.github.io/Light-Omni/</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Light-Omni</span>
+      <span>Project homepage for GitHub Pages</span>
+    </footer>
+  </body>
+</html>
