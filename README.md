@@ -218,7 +218,7 @@ For reproducibility, raw scored evaluation outputs are kept in `logs/`.
 ```bibtex
 @inproceedings{nie2026lightomni,
   title={Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory},
-  author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Shan, Caifeng and Fu, Chaoyou},
+  author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Fu, Chaoyou and Shan, Caifeng},
   year={2026},
   url={http://arxiv.org/abs/xxxx.xxxx}
 }
