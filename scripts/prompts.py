@@ -1,4 +1,3 @@
-############################################################################################
 OMNI_MEMORY_PROFILE_UPDATE_PROMPT_INF = '''
 # Role
 User Profiling Agent: Update existing individual profiles using new memory logs.
@@ -36,7 +35,7 @@ OMNI_MEMORY_LOG_GENERATE_PROMPT_INF = '''
 You are a Multimodal Memory Agent. Synthesize inputs into a high-density log for the current window.
 
 # Context & Profiles
-1. Recent Context: 
+1. Short-Term Memory (Recent context): 
 {SHORT_TERM_MEMORY}
 2. Face Profiles (Mapping `<face_idx>` to identities):
 {INPUT_FACES}
@@ -52,8 +51,8 @@ You are a Multimodal Memory Agent. Synthesize inputs into a high-density log for
 
 # Task
 1. Visual Analysis: 
-   - If Context is empty: Describe full scene setup (location, layout, present individuals).
-   - If Context exists: Describe only CHANGES and NEW ACTIONS.
+   - If STM is empty: Describe full scene setup (location, layout, present individuals).
+   - If STM exists: Describe only CHANGES and NEW ACTIONS.
    - Always use `<face_idx>` for people.
 
 2. Audio Analysis: 
@@ -106,7 +105,7 @@ OMNI_MEMORY_STAGE_1_PROMPT_INF = '''
 You are a sophisticated Multimodal AI Agent with memory capability.
 
 # Context & Profiles
-1. Recent Context: {SHORT_TERM_MEMORY}.
+1. Short-Term Memory: {SHORT_TERM_MEMORY} (Recent context).
 2. Face Profiles (Mapping `<face_idx>` to identities):
 {INPUT_FACES}
 
@@ -135,20 +134,57 @@ You are a sophisticated Multimodal AI Agent with memory capability.
 {RETRIEVED_EPISODIC_MEMORY}
 
 # Context & Profiles
-3. Recent Context:
+1. Short-Term Memory (Recent context):
 {SHORT_TERM_MEMORY}
-4. Face Profiles (Mapping `<face_idx>` to identities):
+2. Face Profiles (Mapping `<face_idx>` to identities):
 {INPUT_FACES} 
 
 # Current Inputs
-5. Timestamps: {START_TIME} to {END_TIME}
-6. Visual Stream (1 fps):
+3. Timestamps: {START_TIME} to {END_TIME}
+4. Visual Stream (1 fps):
 {INPUT_IMAGE_SEQUENCE} 
-7. Audio Stream:
+5. Audio Stream:
 {INPUT_AUDIO_STREAM}
-8. Text Stream:
+6. Text Stream:
 {INPUT_TEXT_STREAM}
 
 # Output
 Based on the retrieved long-term memories and current context, provide a direct response to the input.
 '''.strip()
+############################################################################################
+
+OMNI_MEMORY_STAGE_2_PROMPT_INF_gemini = '''
+# [Role]
+You are a sophisticated Multimodal AI Agent with memory capability.
+
+# Long-Term Retrieved Memories
+1. Semantic Memory:
+{RETRIEVED_SEMANTIC_MEMORY}
+2. Episodic Memory:
+{RETRIEVED_EPISODIC_MEMORY}
+
+# Context & Profiles
+1. Short-Term Memory (Recent Perceptual Context):
+{SHORT_TERM_MEMORY}
+2. Face Profiles (Mapping `<face_idx>` to identities):
+{INPUT_FACES}
+
+# Current Inputs
+1. Timestamps: {START_TIME} to {END_TIME}
+2. Visual Stream (1 fps):
+{INPUT_IMAGE_SEQUENCE}
+3. Audio Stream:
+{INPUT_AUDIO_STREAM}
+4. Text Stream:
+{INPUT_TEXT_STREAM}
+
+# Task
+Provide a concise, personalized response by synthesizing memories and current context.
+1. Replace all `<face_idx>` tags with actual names from Face Profiles.
+2. Use natural, spoken language only. No technical tags, no bullet points.
+
+# Output
+Based on the retrieved long-term memories and current context, provide a direct response to the input.
+'''.strip()
+
+

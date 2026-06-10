@@ -1,0 +1,17 @@
+faiss-gpu==1.7.2
+soundfile==0.13.1
+pillow==10.4.0
+numpy==1.26.4
+torch==2.8.0
+torchaudio==2.8.0
+soundfile==0.13.1
+silero-vad==6.2.0
+faster-whisper==1.2.1
+insightface==0.7.3
+datasets==3.6.0
+flash_attn==2.8.2
+Flask==3.0.0
+Flask-SocketIO==5.3.5
+librosa==0.11.0
+ffmpeg-python==0.2.0
+google-genai==1.11.0
