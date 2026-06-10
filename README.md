@@ -1,11 +1,7 @@
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="docs/assets/icon.png" width="128" alt="Light-Omni icon"></td>
-      <td><h1>Light-Omni</h1></td>
-    </tr>
-  </table>
-</div>
+<h1 align="center">
+  <img src="docs/assets/icon.png" width="96" alt="Light-Omni icon" align="center">
+  Light-Omni
+</h1>
 
 **Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory**
 
@@ -216,21 +212,6 @@ Light-Omni is designed for long-video agent scenarios where direct full-context 
 
 For reproducibility, raw scored evaluation outputs are kept in `logs/`.
 
-## Project Page
-
-The homepage is served from `docs/` through GitHub Pages. Preview locally with:
-
-```bash
-python3 -m http.server 8000 -d docs
-```
-
-Then open:
-
-```text
-http://localhost:8000
-```
-
-PDF files are intentionally ignored and should not be committed to this repository.
 
 ## Citation
 
