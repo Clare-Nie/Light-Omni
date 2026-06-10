@@ -178,7 +178,6 @@ class LightOmniAgent:
             return "", {}
         if message["tag"] == "inference":
             retrieve_state = self.get_response_state_parallel(message)
-            print("Retrieve state:", retrieve_state, message)
             if not retrieve_state.get("is_response", False):
                 retrieve_state.pop("retrieve_embedding", None)
                 return "", retrieve_state
