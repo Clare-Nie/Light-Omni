@@ -423,9 +423,10 @@ if __name__ == '__main__':
     p3.start()
     
     socketio.start_background_task(target=output_listener)
-    socketio.run(app, host='127.0.0.1', port=19090, allow_unsafe_werkzeug=True)
+    socketio.run(app, host='127.0.0.1', port=8085, allow_unsafe_werkzeug=True)
                 #  ssl_context=('./cert.pem', './key.pem')) # http --> https
 
+# cd /data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/Light-Omni; conda activate controlnet2
 # CUDA_VISIBLE_DEVICES=6,7 python -m web_demo.app
 # openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
 # Common Name (e.g. server FQDN or YOUR name) []:192.168.31.234 # ipconfig getifaddr en0

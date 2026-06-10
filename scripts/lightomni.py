@@ -27,7 +27,7 @@ class LightOmniAgent:
                  client=None,
                  cache=True,
                  merge_factor=8,
-                 use_gemini=False
+                 use_gemini=True
                  ):
         self.root_path = root_path
         if client is None:
@@ -37,6 +37,7 @@ class LightOmniAgent:
         self.use_gemini = use_gemini
         if self.use_gemini:
             self.gemini = model.GeminiClient()
+            # self.gemini = model.GemmaClient()
         if cache:
             self.client.start_feature_cache()
         self.merge_factor = merge_factor
@@ -98,6 +99,7 @@ class LightOmniAgent:
         if files:
             assert len(files) == prompt.count("<img>") + prompt.count("<audio>")
         if log_tag=="response_generation" and self.use_gemini:
+            print("Using Gemini for response generation")
             response = self.gemini.send_message(self.gemini.prepare_input(copy.deepcopy(_prompt), copy.deepcopy(_files)), clear=True)
         else:
             response = self.client.send_message(self.client.prepare_input(copy.deepcopy(_prompt), copy.deepcopy(_files)), mode="response" if log_tag=="response_generation" else "memory")
@@ -178,6 +180,8 @@ class LightOmniAgent:
             return "", {}
         if message["tag"] == "inference":
             retrieve_state = self.get_response_state_parallel(message)
+            print(retrieve_state)
+            # retrieve_state["is_response"] = True
             if not retrieve_state.get("is_response", False):
                 retrieve_state.pop("retrieve_embedding", None)
                 return "", retrieve_state

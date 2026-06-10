@@ -15,7 +15,8 @@ from google.genai import types
 
 class QwenOmni2_5Model():
     def __init__(self,
-                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260402-230319/checkpoint-6996",
+                # model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0313_sft_retrieve/v1-20260313-143837/checkpoint-5793",
+                model_path = "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/ms-swift/0326_sft_retrieve/v0-20260403-225504/checkpoint-4832",
                 base_model="Qwen/Qwen2.5-Omni-7B",
                 device_map=None):
         if device_map is None:
@@ -169,9 +170,9 @@ class QwenOmni2_5Model():
 
 class GeminiClient:
     def __init__(self,
-                api_key="",
+                api_key="sk-fTzScj6hsRzfOReTtnGgH3fFC1G9aYaKwATiEsAyukZIYTAe",
                 base_url="http://automl.aiserverai.online",
-                model_name="gemini-3-flash-preview"
+                model_name="gemini-3.1-flash-lite-preview"  # gemini-3-flash-preview gemini-3.1-flash-lite-preview
                 ):
         self.client = genai.Client(
             http_options=types.HttpOptions(
@@ -308,3 +309,35 @@ class GeminiClient:
                 if segment: 
                     inputs.append(segment)
         return inputs
+
+
+import requests
+
+class GemmaClient:
+    def __init__(self, base_url="http://localhost:8001"):
+        self.base_url = base_url
+    
+    def prepare_input(self, prompt, files=[], clear=True):
+        return {
+            "prompt": prompt,
+            "files": files,
+            "clear": clear
+        }
+
+    def send_message(self, input_data, clear=True):
+        payload = input_data
+        response = requests.post(f"{self.base_url}/generate", json=payload)
+        print(1111, input_data, response.json().strip("<turn|>"))
+        return response.json().strip("<turn|>")
+
+# if __name__ == "__main__":
+#     client = GemmaClient()
+#     my_prompt = "<audio>描述这段音频的内容一句话分析。"
+#     my_files = [
+#         # "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/dataset/training_retrieve/0/profiles/data/processed_2025-01-10 17:07:01.png", 
+#         "/data1/niechang/Memory/omnimemory/nie_omni/TrainingDatasetConstruction/dataset/training_retrieve/0/raw/2025-01-10 17:07:01—2025-01-10 17:07:20.wav"
+#     ]
+#     result = client.send_message(client.prepare_input(my_prompt, my_files))
+#     print(result)
+
+
