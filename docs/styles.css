@@ -242,7 +242,8 @@ h2::before {
 }
 
 .video-card {
-  margin: 34px 0 0;
+  width: min(820px, 100%);
+  margin: 34px auto 0;
   overflow: hidden;
   background: #ffffff;
   border: 1px solid var(--line);
