@@ -1,7 +1,11 @@
-<h1 align="center">
-  <img src="docs/assets/icon.png" width="64" alt="Light-Omni icon">
-  Light-Omni
-</h1>
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="docs/assets/icon.png" width="128" alt="Light-Omni icon"></td>
+      <td><h1>Light-Omni</h1></td>
+    </tr>
+  </table>
+</div>
 
 **Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory**
 
