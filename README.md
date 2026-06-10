@@ -198,8 +198,6 @@ Watch the web demo video:
   <a href="docs/assets/demo-light.mp4">
     <img src="docs/assets/demo.png" width="860" alt="Light-Omni web demo">
   </a>
-  <br>
-  <sub>This demo is built on Qwen3-Omni-30B-A3B-Instruct.</sub>
 </p>
 
 Click the image or open [`docs/assets/demo-light.mp4`](docs/assets/demo-light.mp4)
