@@ -8,7 +8,7 @@
 [![Project](https://img.shields.io/badge/Project-Page-blue)](https://clare-nie.github.io/Light-Omni/)
 [![Model](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/ClareNie/Light-Omni)
 [![Dataset](https://img.shields.io/badge/HuggingFace-Dataset-yellow)](https://huggingface.co/datasets/ClareNie/Light-Omni-Training)
-[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/xxxx.xxxx)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2607.05511)
 
 Light-Omni is an agentic video understanding system with long-term multimodal memory. It is built on Qwen2.5-Omni and replaces costly iterative reasoning with a lightweight reflex-style pathway for deciding when to respond, when to retrieve memory, and how to ground the response in long-term multimodal context.
 
@@ -63,7 +63,7 @@ Main resources:
 - Code: https://github.com/Clare-Nie/Light-Omni
 - Model: https://huggingface.co/ClareNie/Light-Omni
 - Training data: https://huggingface.co/datasets/ClareNie/Light-Omni-Training
-- Paper: https://arxiv.org/abs/xxxx.xxxx
+- Paper: https://arxiv.org/abs/2607.05511
 
 ## Performance
 
@@ -223,10 +223,14 @@ Adjust `scripts/config.py`, `scripts/model.py`, and `web_demo/app.py` if your ch
 ## Citation
 
 ```bibtex
-@inproceedings{nie2026lightomni,
+@misc{nie2026lightomni,
   title={Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory},
-  author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Fu, Chaoyou and Shan, Caifeng},
+  author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Fu, Chaoyou and Shan,
+  Caifeng},
   year={2026},
-  url={http://arxiv.org/abs/xxxx.xxxx}
+  eprint={2607.05511},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={http://arxiv.org/abs/2607.05511}
 }
 ```
