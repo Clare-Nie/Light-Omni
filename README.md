@@ -191,9 +191,6 @@ Current test results:
 | HippoVlog | 785 | 1000 | 78.50 |
 
 ## Demo
-
-Watch the web demo video:
-
 <p align="center">
   <a href="docs/assets/demo-light.mp4">
     <img src="docs/assets/demo.png" width="860" alt="Light-Omni web demo">
@@ -213,7 +210,7 @@ python -m web_demo.app
 
 The demo uses:
 
-- GPU 0 for response/retrieval inference
+- GPU 0 for reaction/response inference
 - GPU 1 for memory processing
 - `output/` for local session storage
 
