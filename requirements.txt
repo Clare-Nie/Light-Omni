@@ -18,3 +18,5 @@ ffmpeg-python==0.2.0
 google-genai==1.11.0
 moviepy==1.0.3
 torchvision==0.23.0
+
+# Repository refresh: 2026-07-08

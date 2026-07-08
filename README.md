@@ -234,3 +234,5 @@ Adjust `scripts/config.py`, `scripts/model.py`, and `web_demo/app.py` if your ch
   url={http://arxiv.org/abs/2607.05511}
 }
 ```
+
+# Repository refresh: 2026-07-08
