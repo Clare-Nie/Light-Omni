@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/icon.png" width="860" alt="Light-Omni">
+  <img src="docs/assets/icon.png" width="720" alt="Light-Omni">
 </p>
 
 **Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory**
