@@ -13,6 +13,7 @@ Light-Omni is an agentic video understanding system with long-term multimodal me
 
 ## News
 
+- **[2026.10]** 🎉 Our paper has been accepted by **IEEE Transactions on Multimedia (IEEE TMM)**!
 - The Light-Omni model checkpoint is available on Hugging Face.
 - The training data are released with standardized JSON annotations and compressed media archives.
 - This repository vendors the patched `transformers` and `ms-swift` code required for Light-Omni training and inference.
