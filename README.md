@@ -220,14 +220,13 @@ Adjust `scripts/config.py`, `scripts/model.py`, and `web_demo/app.py` if your ch
 ## Citation
 
 ```bibtex
-@misc{nie2026lightomni,
+@article{nie2026lightomni,
   title={Light-Omni: Reflex over Reasoning in Agentic Video Understanding with Long-Term Memory},
   author={Nie, Chang and Wei, Jiaju and Feng, Junlan and Fu, Chaoyou and Shan,
   Caifeng},
+  journal={IEEE Transactions on Multimedia},
   year={2026},
-  eprint={2607.05511},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV},
+  publisher={IEEE},
   url={http://arxiv.org/abs/2607.05511}
 }
 ```
